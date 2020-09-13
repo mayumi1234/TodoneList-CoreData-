@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Orf-i0-8G8">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="az8-UC-Oua">
+            <objects>
+                <navigationController id="Orf-i0-8G8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qF0-Fh-di9">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Iq0-SS-YeD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VQ1-Jn-Hez" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1001" y="138"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="ToDoneList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WsX-YH-RwU">
+                                <rect key="frame" x="0.0" y="88" width="414" height="724"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" rowHeight="100" id="adi-Fo-u41" customClass="MainTableViewCell" customModule="ToDoneList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="adi-Fo-u41" id="Oo7-I3-q76">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="53" translatesAutoresizingMaskIntoConstraints="NO" id="KBH-uH-Fcc">
+                                                    <rect key="frame" x="5" y="5" width="404" height="90"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Swift " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfP-Ew-t3d">
+                                                            <rect key="frame" x="0.0" y="0.0" width="404" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk0-bh-E10">
+                                                            <rect key="frame" x="0.0" y="73.5" width="404" height="16.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KBH-uH-Fcc" firstAttribute="top" secondItem="Oo7-I3-q76" secondAttribute="top" constant="5" id="JBZ-Jr-ciE"/>
+                                                <constraint firstItem="KBH-uH-Fcc" firstAttribute="leading" secondItem="Oo7-I3-q76" secondAttribute="leading" constant="5" id="Pzq-vc-4Oa"/>
+                                                <constraint firstAttribute="bottom" secondItem="KBH-uH-Fcc" secondAttribute="bottom" constant="5" id="mG0-UT-f91"/>
+                                                <constraint firstAttribute="trailing" secondItem="KBH-uH-Fcc" secondAttribute="trailing" constant="5" id="oya-le-O8N"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="detailLabel" destination="Xk0-bh-E10" id="3EP-PL-B6B"/>
+                                            <outlet property="titleLable" destination="KfP-Ew-t3d" id="SdY-ka-cQS"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="BM4-ZC-PVk"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="EgH-yW-YWs"/>
+                                </connections>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iWj-jc-637">
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxE-s8-Uv5">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="50"/>
+                                        <state key="normal" title="プライバシーポリシー"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xs9-MS-H0f">
+                                        <rect key="frame" x="207" y="0.0" width="207" height="50"/>
+                                        <state key="normal" title="お問い合わせ"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="M3b-Pj-mR6"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WsX-YH-RwU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Oh6-Uh-SAX"/>
+                            <constraint firstItem="WsX-YH-RwU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Qee-oc-hUH"/>
+                            <constraint firstItem="WsX-YH-RwU" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VdD-xM-jCZ"/>
+                            <constraint firstItem="iWj-jc-637" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Wcz-e3-eom"/>
+                            <constraint firstItem="iWj-jc-637" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eKR-A5-lgt"/>
+                            <constraint firstItem="iWj-jc-637" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="vwb-aP-mDM"/>
+                            <constraint firstItem="iWj-jc-637" firstAttribute="top" secondItem="WsX-YH-RwU" secondAttribute="bottom" id="yzg-Or-IiP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Tpl-Pa-vtp">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="LTK-IB-VHN">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9tL-Ua-4B3">
+                                <rect key="frame" x="20" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="グラフ"/>
+                                <connections>
+                                    <action selector="graphButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LkQ-7E-8fz"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="graphButton:" destination="BYZ-38-t0r" id="gx6-Qe-nAn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="0c7-28-7n5">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ljJ-O8-Dea">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="追加"/>
+                                <connections>
+                                    <action selector="addToDoneButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5sR-QC-yrO"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="addToDoneButton:" destination="BYZ-38-t0r" id="MU1-Qg-hlK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bottomBarHeight" destination="M3b-Pj-mR6" id="w9j-aP-EaI"/>
+                        <outlet property="bottomTableViewConstraint" destination="yzg-Or-IiP" id="n31-bC-5q9"/>
+                        <outlet property="bottomView" destination="iWj-jc-637" id="cdY-i4-cxu"/>
+                        <outlet property="mainTableView" destination="WsX-YH-RwU" id="l16-m8-Dgz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+</document>
