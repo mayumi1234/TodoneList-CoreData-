@@ -65,22 +65,24 @@ class AddToDoneViewController: UIViewController {
     }
     
     @IBAction func pushOnContinuedRecordButton(_ sender: Any) {
-        // 名前とやった時間を出力
-        //　firebaseに保存処理
-        //  MainViewControllerに値を受け渡す
-        // dismissはしない
-        HUD.show(.progress)
-        createToFirestore()
+        if nameTextField.text!.isEmpty || detailTextView.text.isEmpty || dateTextField.text!.isEmpty {
+            HUD.flash(.labeledError(title: "項目を入力してください。", subtitle: ""), delay: HUDTime)
+            return
+        } else {
+            HUD.show(.progress)
+            createToFirestore()
+        }
     }
     
     @IBAction func pushOnRecordButton(_ sender: Any) {
-        // 名前とやった時間を出力
-        //　firebaseに保存処理
-        //  MainViewControllerに値を受け渡す
-        // dismissはする
-        HUD.show(.progress)
-        createToFirestore()
-        self.navigationController?.popToRootViewController(animated: true)
+        if nameTextField.text!.isEmpty || detailTextView.text.isEmpty || dateTextField.text!.isEmpty  {
+            HUD.flash(.labeledError(title: "項目を入力してください。", subtitle: ""), delay: HUDTime)
+            return
+        } else {
+            HUD.show(.progress)
+            createToFirestore()
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     @IBAction func pushOnCanceledButton(_ sender: Any) {

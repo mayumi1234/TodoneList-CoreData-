@@ -20,7 +20,7 @@ class Task {
         self.name = dic["name"] as? String ?? ""
         self.detail = dic["detail"] as? String ?? ""
         self.dateString = dic["dateString"] as? String ?? ""
-        self.date = dic["date"] as? Date ?? Date()
+        self.date = (dic["date"] as? Timestamp)?.dateValue() ?? Date()
         self.documentId = dic["documentId"] as? String ?? ""
     }
 

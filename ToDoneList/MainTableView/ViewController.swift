@@ -19,6 +19,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var bottomBarHeight: NSLayoutConstraint!
     @IBOutlet weak var bottomTableViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomView: UIStackView!
+    @IBOutlet weak var graphButton: UIButton!
     
     var tasks = [Task]()
     
@@ -32,8 +33,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         firestoreToTasks()
         tableviewSetup()
         
-        // ボトムは申請審査の時に、いるかいらないか判断
         bottomView.isHidden = true
+        graphButton.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +57,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-//        AdsSetup()
+        AdsSetup()
     }
     
     private func firestoreToTasks() {
@@ -74,7 +75,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                     case .added:
                         let dic = documentChange.document.data()
                         let task = Task(dic: dic)
-                        print(task.date)
                         self.tasks.append(task)
                         if let index = self.mySectionRows.firstIndex(where: { $0.mySection == task.dateString }) {
                             self.mySectionRows[index].myRow.append(task)
@@ -85,18 +85,34 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                         self.mainTableView.reloadData()
                         
                     case .modified:
-                        self.tasks.removeAll()
-                        self.mySectionRows.removeAll()
-                        
                         let dic = documentChange.document.data()
                         let task = Task(dic: dic)
-                        self.tasks.append(task)
-                        if let index = self.mySectionRows.firstIndex(where: { $0.mySection == task.dateString }) {
-                            self.mySectionRows[index].myRow.append(task)
-                        } else {
-                            self.mySectionRows.insert((task.dateString, task.date, [task]), at: 0)
+                        
+                        if let mySectionRowIndex = self.mySectionRows.firstIndex(where: { $0.myRow.contains(where: { $0.documentId == task.documentId }) }) {
+                            if let myRowIndex = self.mySectionRows[mySectionRowIndex].myRow.firstIndex(where: { $0.documentId == task.documentId }) {
+                                
+                                // 日付が変更されていない時
+                                if self.mySectionRows[mySectionRowIndex].myRow[myRowIndex].dateString == task.dateString {
+                                    self.mySectionRows[mySectionRowIndex].myRow[myRowIndex] = task
+                                } else { // 日付が変更された時
+//                                    今のセクションから要素を除去
+                                        self.mySectionRows[mySectionRowIndex].myRow.removeAll(where: { $0.documentId == task.documentId })
+                                        if self.mySectionRows[mySectionRowIndex].myRow.count == 0 {
+                                            self.mySectionRows.remove(at: mySectionRowIndex)
+                                        }
+//                                        指定のセクションに要素を追加する
+                                    if let index = self.mySectionRows.firstIndex(where: { $0.mySection == task.dateString }) {
+                                        self.mySectionRows[index].myRow.append(task)
+                                    } else {
+                                        self.mySectionRows.insert((task.dateString, task.date, [task]), at: 0)
+                                    }
+                                    
+                                }
+                            }
                         }
+                        self.sortArray()
                         self.mainTableView.reloadData()
+                        
                     case .removed:
                         print("test")
                     }
@@ -108,7 +124,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         self.mySectionRows.sort { (m1, m2) -> Bool in
             let m1Date = m1.date
             let m2Date = m2.date
-            print(m1Date, m2Date)
             return m1Date > m2Date
         }
     }
@@ -185,8 +200,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             nextView.task = self.mySectionRows[indexPath!.section].myRow[indexPath!.row]
             self.navigationController?.pushViewController(nextView, animated: true)//遷移する
         })
+        
         let action2 = UIAlertAction(title: "削除", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) in
+            
 //            選択されたセルを削除する
             guard let uid = Auth.auth().currentUser?.uid else { return }
             let docId = self.mySectionRows[indexPath!.section].myRow[indexPath!.row].documentId
@@ -203,7 +220,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                             self.mySectionRows.remove(at: mySectionRowIndex)
                         }
                     }
-                    
                     self.mainTableView.reloadData()
                 }
             }

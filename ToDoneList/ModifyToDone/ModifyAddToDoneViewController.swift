@@ -30,13 +30,13 @@ class ModifyAddToDoneViewController: UIViewController {
         
         setupDatePicker()
         setupTaskValue()
+        setupLayout()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         AdsSetup()
-        setupLayout()
     }
     
     private func setupTaskValue() {
@@ -74,15 +74,24 @@ class ModifyAddToDoneViewController: UIViewController {
     }
     
     @IBAction func pushOnContinuedRecordButton(_ sender: Any) {
-        HUD.show(.progress)
-        createToFirestore()
-        self.navigationController?.popToRootViewController(animated: true)
+        if nameTextField.text!.isEmpty || detailTextView.text.isEmpty || dateTextField.text!.isEmpty {
+            HUD.flash(.labeledError(title: "項目を入力してください。", subtitle: ""), delay: HUDTime)
+            return
+        } else {
+            HUD.show(.progress)
+            createToFirestore()
+        }
     }
     
     @IBAction func pushOnRecordButton(_ sender: Any) {
-        HUD.show(.progress)
-        createToFirestore()
-        self.navigationController?.popToRootViewController(animated: true)
+        if nameTextField.text!.isEmpty || detailTextView.text.isEmpty || dateTextField.text!.isEmpty {
+            HUD.flash(.labeledError(title: "項目を入力してください。", subtitle: ""), delay: HUDTime)
+            return
+        } else {
+            HUD.show(.progress)
+            createToFirestore()
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     @IBAction func pushOnCanceledButton(_ sender: Any) {
