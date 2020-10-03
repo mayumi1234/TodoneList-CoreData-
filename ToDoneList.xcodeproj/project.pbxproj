@@ -23,6 +23,8 @@
 		9E8DFDCE25049C2B00F255C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8DFDCC25049C2B00F255C2 /* LaunchScreen.storyboard */; };
 		9E8DFDD925049C2B00F255C2 /* ToDoneListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DFDD825049C2B00F255C2 /* ToDoneListTests.swift */; };
 		9E8DFDE425049C2B00F255C2 /* ToDoneListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DFDE325049C2B00F255C2 /* ToDoneListUITests.swift */; };
+		9EB34ABB252832D000C5A2B5 /* CoreDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB34ABA252832D000C5A2B5 /* CoreDataExtension.swift */; };
+		9EB34AC12528333A00C5A2B5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EB34ABF2528333A00C5A2B5 /* Model.xcdatamodeld */; };
 		9ED2C84F2508EB9600672495 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ED2C84A2508EB9600672495 /* SignIn.storyboard */; };
 		9ED2C8502508EB9600672495 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2C84B2508EB9600672495 /* SignInViewController.swift */; };
 		9ED2C8512508EB9600672495 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2C84D2508EB9600672495 /* SignUpViewController.swift */; };
@@ -77,6 +79,9 @@
 		9E8DFDDF25049C2B00F255C2 /* ToDoneListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoneListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8DFDE325049C2B00F255C2 /* ToDoneListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoneListUITests.swift; sourceTree = "<group>"; };
 		9E8DFDE525049C2B00F255C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E9A5062251B6F6E00D70065 /* ToDoneList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToDoneList.entitlements; sourceTree = "<group>"; };
+		9EB34ABA252832D000C5A2B5 /* CoreDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtension.swift; sourceTree = "<group>"; };
+		9EB34AC02528333A00C5A2B5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		9ED2C84A2508EB9600672495 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		9ED2C84B2508EB9600672495 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		9ED2C84D2508EB9600672495 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +176,8 @@
 		9E8DFDC025049C2900F255C2 /* ToDoneList */ = {
 			isa = PBXGroup;
 			children = (
+				9EB34AC52528353600C5A2B5 /* CoreData */,
+				9E9A5062251B6F6E00D70065 /* ToDoneList.entitlements */,
 				9E4469D2251726C7000E9A36 /* ModifyToDone */,
 				9E717248250B901600C0C444 /* Models */,
 				9ED2C8532508EFDA00672495 /* Extension */,
@@ -182,6 +189,7 @@
 				9E8DFDC325049C2900F255C2 /* SceneDelegate.swift */,
 				9E8DFDCA25049C2B00F255C2 /* Assets.xcassets */,
 				9E8DFDCC25049C2B00F255C2 /* LaunchScreen.storyboard */,
+				9EB34ABF2528333A00C5A2B5 /* Model.xcdatamodeld */,
 				9E79F4172504B65B00A36AE0 /* GoogleService-Info.plist */,
 				9E8DFDCF25049C2B00F255C2 /* Info.plist */,
 			);
@@ -215,6 +223,13 @@
 			path = MainTableView;
 			sourceTree = "<group>";
 		};
+		9EB34AC52528353600C5A2B5 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		9ED2C8492508EB9600672495 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +254,7 @@
 				9ED2C8542508EFDA00672495 /* UIColorExtension.swift */,
 				9ED2C8552508EFDA00672495 /* UIViewControllerExtension.swift */,
 				9ED2C8562508EFDA00672495 /* UIViewExtension.swift */,
+				9EB34ABA252832D000C5A2B5 /* CoreDataExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -513,6 +529,8 @@
 				9ED2C8512508EB9600672495 /* SignUpViewController.swift in Sources */,
 				9ED2C8572508EFDA00672495 /* UIColorExtension.swift in Sources */,
 				9E8DFDC625049C2900F255C2 /* ViewController.swift in Sources */,
+				9EB34AC12528333A00C5A2B5 /* Model.xcdatamodeld in Sources */,
+				9EB34ABB252832D000C5A2B5 /* CoreDataExtension.swift in Sources */,
 				9E4469E725172778000E9A36 /* ModifyAddToDoneViewController.swift in Sources */,
 				9E79F41625049FA300A36AE0 /* AddToDoneViewController.swift in Sources */,
 				9ED2C8582508EFDA00672495 /* UIViewControllerExtension.swift in Sources */,
@@ -695,6 +713,7 @@
 			baseConfigurationReference = 176A3CF9056D555A93835D22 /* Pods-ToDoneList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ToDoneList/ToDoneList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T523PHK3SV;
 				INFOPLIST_FILE = ToDoneList/Info.plist;
@@ -702,6 +721,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = mayumi.yamanishi.ToDoneList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -714,6 +734,7 @@
 			baseConfigurationReference = 7DAFA4CCA2D035738A5A0964 /* Pods-ToDoneList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ToDoneList/ToDoneList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T523PHK3SV;
 				INFOPLIST_FILE = ToDoneList/Info.plist;
@@ -721,6 +742,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = mayumi.yamanishi.ToDoneList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -856,6 +878,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9EB34ABF2528333A00C5A2B5 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9EB34AC02528333A00C5A2B5 /* Model.xcdatamodel */,
+			);
+			currentVersion = 9EB34AC02528333A00C5A2B5 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9E8DFDB625049C2900F255C2 /* Project object */;
 }

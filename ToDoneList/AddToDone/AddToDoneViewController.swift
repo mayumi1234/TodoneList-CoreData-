@@ -8,11 +8,43 @@
 
 import UIKit
 import GoogleMobileAds
-import Firebase
-import FirebaseAuth
-import FirebaseStorage
-import FirebaseFirestore
 import PKHUD
+import CoreData
+
+class CoreDataModel {
+    
+    private static var persistentContainer: NSPersistentCloudKitContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer as! NSPersistentCloudKitContainer
+    
+    static func newTask() -> TodoneTask {
+        let context = persistentContainer.viewContext
+        let todoneTask = NSEntityDescription.insertNewObject(forEntityName: "TodoneTask", into: context) as! TodoneTask
+        return todoneTask
+    }
+    
+    static func save() {
+        persistentContainer.saveContext()
+    }
+    
+    static func delete(person: TodoneTask) {
+        let context = persistentContainer.viewContext
+        context.delete(person)
+    }
+    
+    static func getTask() -> [TodoneTask] {
+        
+        let context = persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TodoneTask")
+        
+        do {
+            let todoneTask = try context.fetch(request) as! [TodoneTask]
+            return todoneTask
+        }
+        catch {
+            fatalError()
+        }
+    }
+    
+}
 
 class AddToDoneViewController: UIViewController {
     
@@ -70,7 +102,9 @@ class AddToDoneViewController: UIViewController {
             return
         } else {
             HUD.show(.progress)
-            createToFirestore()
+            createToCoreData()
+            let test = CoreDataModel.getTask()
+            print(test)
         }
     }
     
@@ -80,7 +114,7 @@ class AddToDoneViewController: UIViewController {
             return
         } else {
             HUD.show(.progress)
-            createToFirestore()
+            createToCoreData()
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
@@ -89,7 +123,7 @@ class AddToDoneViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    private func createToFirestore() {
+    private func createToCoreData() {
         guard let name = nameTextField.text else {
             return
         }
@@ -99,34 +133,61 @@ class AddToDoneViewController: UIViewController {
         guard let dateString = dateTextField.text else {
             return
         }
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
         
         let date = datePicker.date
-        let documentID = UIViewController.randomString(length: 20)
+        
+        // task作成
+        let task = CoreDataModel.newTask()
+        task.name = name
+        task.date = date
+        task.dateString = dateString
+        task.detail = detail
 
-        let docData = [
-            "name": name,
-            "detail": detail,
-            "dateString": dateString,
-            "date": date,
-            "documentId": documentID
-            ] as [String : Any]
-
-        // タスクを記録
-        db.collection("users").document(uid).collection("tasks").document(documentID).setData(docData) { (err) in
-            if let err = err {
-                print("Firestoreへの保存に失敗しました。\(err)")
-                HUD.hide()
-                HUD.flash(.labeledError(title: "失敗しました。", subtitle: "\(err)"), delay: HUDTime)
-                return
-            }
-            print("Firestoreへの保存が成功しました。")
-            HUD.hide()
-            HUD.flash(.labeledSuccess(title: "完了しました。", subtitle: ""), delay: HUDTime)
-        }
+        // 保存
+        CoreDataModel.save()
+        HUD.hide()
+        HUD.flash(.labeledSuccess(title: "完了しました。", subtitle: ""), delay: HUDTime)
     }
+    
+//
+//    private func createToFirestore() {
+//        guard let name = nameTextField.text else {
+//            return
+//        }
+//        guard let detail = detailTextView.text else {
+//            return
+//        }
+//        guard let dateString = dateTextField.text else {
+//            return
+//        }
+//        guard let uid = Auth.auth().currentUser?.uid else {
+//            return
+//        }
+//
+//        let date = datePicker.date
+//        let documentID = UIViewController.randomString(length: 20)
+//
+//        let docData = [
+//            "name": name,
+//            "detail": detail,
+//            "dateString": dateString,
+//            "date": date,
+//            "documentId": documentID
+//            ] as [String : Any]
+//
+//        // タスクを記録
+//        db.collection("users").document(uid).collection("tasks").document(documentID).setData(docData) { (err) in
+//            if let err = err {
+//                print("Firestoreへの保存に失敗しました。\(err)")
+//                HUD.hide()
+//                HUD.flash(.labeledError(title: "失敗しました。", subtitle: "\(err)"), delay: HUDTime)
+//                return
+//            }
+//            print("Firestoreへの保存が成功しました。")
+//            HUD.hide()
+//            HUD.flash(.labeledSuccess(title: "完了しました。", subtitle: ""), delay: HUDTime)
+//        }
+//    }
     
     private func setupLayout() {
         continuedRecordButton.layer.cornerRadius = 5
