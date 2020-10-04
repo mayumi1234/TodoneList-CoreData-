@@ -25,9 +25,9 @@ class CoreDataModel {
         persistentContainer.saveContext()
     }
     
-    static func delete(person: TodoneTask) {
+    static func delete(todoneTask: TodoneTask) {
         let context = persistentContainer.viewContext
-        context.delete(person)
+        context.delete(todoneTask)
     }
     
     static func getTask() -> [TodoneTask] {
