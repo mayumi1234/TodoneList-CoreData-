@@ -39,26 +39,28 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // get data
     func getData(){
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        do {
-            tasks = try context.fetch(TodoneTask.fetchRequest())
-            
-            mySectionRows.removeAll()
-            
-            // sectionに日付を追加
-            for i in 0..<tasks.count {
-//                すでに日付が入っているときは、該当のセクションにタスクを追加する
-                if let index = self.mySectionRows.firstIndex(where: { $0.mySection == tasks[i].dateString }) {
-                    self.mySectionRows[index].myRow.append(tasks[i])
-                } else {
-//                    新しい日付が入ってきたときに、新しいセクションを作成
-                    self.mySectionRows.insert((tasks[i].dateString!, tasks[i].date!, [tasks[i]]), at: 0)
+        if tasks.count != 0 {
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            do {
+                tasks = try context.fetch(TodoneTask.fetchRequest())
+                
+                mySectionRows.removeAll()
+                
+                // sectionに日付を追加
+                for i in 0..<tasks.count {
+    //                すでに日付が入っているときは、該当のセクションにタスクを追加する
+                    if let index = self.mySectionRows.firstIndex(where: { $0.mySection == tasks[i].dateString }) {
+                        self.mySectionRows[index].myRow.append(tasks[i])
+                    } else {
+    //                    新しい日付が入ってきたときに、新しいセクションを作成
+                        self.mySectionRows.insert((tasks[i].dateString!, tasks[i].date!, [tasks[i]]), at: 0)
+                    }
+                    sortArray()
                 }
-                sortArray()
             }
-        }
-        catch{
-            print("読み込み失敗！")
+            catch{
+                print("読み込み失敗！")
+            }
         }
     }
     

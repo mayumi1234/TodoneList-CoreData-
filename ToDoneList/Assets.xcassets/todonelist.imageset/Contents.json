@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "todonelist-2.png",
+      "filename" : "ダウンロード.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "todonelist-1.png",
+      "filename" : "ダウンロード-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "todonelist.png",
+      "filename" : "ダウンロード-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

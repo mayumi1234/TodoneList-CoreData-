@@ -17,13 +17,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="todonelist" translatesAutoresizingMaskIntoConstraints="NO" id="uy4-5e-Jhe">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todonelist" translatesAutoresizingMaskIntoConstraints="NO" id="uy4-5e-Jhe">
+                                <rect key="frame" x="50" y="298" width="314" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="9re-mJ-gcO"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uy4-5e-Jhe" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="AuX-BF-S8B"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uy4-5e-Jhe" secondAttribute="trailing" constant="50" id="hB3-CN-ds5"/>
+                            <constraint firstItem="uy4-5e-Jhe" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="jGk-TE-FYV"/>
+                            <constraint firstItem="uy4-5e-Jhe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="r1h-iS-agQ"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -32,7 +40,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="todonelist" width="256" height="256"/>
+        <image name="todonelist" width="192.5" height="192.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
