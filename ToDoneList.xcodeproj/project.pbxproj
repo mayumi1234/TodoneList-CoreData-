@@ -8,13 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6F4123F33F87523898653FCC /* Pods_ToDoneList_ToDoneListUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C06CF8F227DD2DBF96ED11B /* Pods_ToDoneList_ToDoneListUITests.framework */; };
-		9E159FEC250CAD400094D5EE /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E159FEB250CAD400094D5EE /* DateModel.swift */; };
+		9E277CFC252F394800236D1D /* TodoneTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E277CFB252F394800236D1D /* TodoneTask+CoreDataProperties.swift */; };
+		9E277D01252F394E00236D1D /* TodoneTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E277D00252F394E00236D1D /* TodoneTask+CoreDataClass.swift */; };
 		9E4469E725172778000E9A36 /* ModifyAddToDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4469E625172778000E9A36 /* ModifyAddToDoneViewController.swift */; };
 		9E4469EC2517278D000E9A36 /* ModifyToDone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E4469EB2517278D000E9A36 /* ModifyToDone.storyboard */; };
-		9E71724E250B901600C0C444 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71724B250B901600C0C444 /* Task.swift */; };
 		9E79F41425049F9200A36AE0 /* AddToDone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E79F41325049F9200A36AE0 /* AddToDone.storyboard */; };
 		9E79F41625049FA300A36AE0 /* AddToDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E79F41525049FA300A36AE0 /* AddToDoneViewController.swift */; };
-		9E79F4182504B65B00A36AE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E79F4172504B65B00A36AE0 /* GoogleService-Info.plist */; };
 		9E8DFDC225049C2900F255C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DFDC125049C2900F255C2 /* AppDelegate.swift */; };
 		9E8DFDC425049C2900F255C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DFDC325049C2900F255C2 /* SceneDelegate.swift */; };
 		9E8DFDC625049C2900F255C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DFDC525049C2900F255C2 /* ViewController.swift */; };
@@ -23,12 +22,7 @@
 		9E8DFDCE25049C2B00F255C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8DFDCC25049C2B00F255C2 /* LaunchScreen.storyboard */; };
 		9E8DFDD925049C2B00F255C2 /* ToDoneListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DFDD825049C2B00F255C2 /* ToDoneListTests.swift */; };
 		9E8DFDE425049C2B00F255C2 /* ToDoneListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DFDE325049C2B00F255C2 /* ToDoneListUITests.swift */; };
-		9EB34ABB252832D000C5A2B5 /* CoreDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB34ABA252832D000C5A2B5 /* CoreDataExtension.swift */; };
 		9EB34AC12528333A00C5A2B5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EB34ABF2528333A00C5A2B5 /* Model.xcdatamodeld */; };
-		9ED2C84F2508EB9600672495 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ED2C84A2508EB9600672495 /* SignIn.storyboard */; };
-		9ED2C8502508EB9600672495 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2C84B2508EB9600672495 /* SignInViewController.swift */; };
-		9ED2C8512508EB9600672495 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2C84D2508EB9600672495 /* SignUpViewController.swift */; };
-		9ED2C8522508EB9600672495 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ED2C84E2508EB9600672495 /* SignUp.storyboard */; };
 		9ED2C8572508EFDA00672495 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2C8542508EFDA00672495 /* UIColorExtension.swift */; };
 		9ED2C8582508EFDA00672495 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2C8552508EFDA00672495 /* UIViewControllerExtension.swift */; };
 		9ED2C8592508EFDA00672495 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2C8562508EFDA00672495 /* UIViewExtension.swift */; };
@@ -58,13 +52,12 @@
 		2C06CF8F227DD2DBF96ED11B /* Pods_ToDoneList_ToDoneListUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoneList_ToDoneListUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5194438291623D635F02A40B /* Pods-ToDoneList-ToDoneListUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoneList-ToDoneListUITests.debug.xcconfig"; path = "Target Support Files/Pods-ToDoneList-ToDoneListUITests/Pods-ToDoneList-ToDoneListUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7DAFA4CCA2D035738A5A0964 /* Pods-ToDoneList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoneList.release.xcconfig"; path = "Target Support Files/Pods-ToDoneList/Pods-ToDoneList.release.xcconfig"; sourceTree = "<group>"; };
-		9E159FEB250CAD400094D5EE /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
+		9E277CFB252F394800236D1D /* TodoneTask+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TodoneTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9E277D00252F394E00236D1D /* TodoneTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodoneTask+CoreDataClass.swift"; path = "/Users/m.yamanishi/Swift/portfolio/ToDoneList(coredata)/ToDoneList/CoreData/TodoneTask+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		9E4469E625172778000E9A36 /* ModifyAddToDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyAddToDoneViewController.swift; sourceTree = "<group>"; };
 		9E4469EB2517278D000E9A36 /* ModifyToDone.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModifyToDone.storyboard; sourceTree = "<group>"; };
-		9E71724B250B901600C0C444 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		9E79F41325049F9200A36AE0 /* AddToDone.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddToDone.storyboard; sourceTree = "<group>"; };
 		9E79F41525049FA300A36AE0 /* AddToDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToDoneViewController.swift; sourceTree = "<group>"; };
-		9E79F4172504B65B00A36AE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E8DFDBE25049C2900F255C2 /* ToDoneList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoneList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8DFDC125049C2900F255C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E8DFDC325049C2900F255C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,12 +73,7 @@
 		9E8DFDE325049C2B00F255C2 /* ToDoneListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoneListUITests.swift; sourceTree = "<group>"; };
 		9E8DFDE525049C2B00F255C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E9A5062251B6F6E00D70065 /* ToDoneList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToDoneList.entitlements; sourceTree = "<group>"; };
-		9EB34ABA252832D000C5A2B5 /* CoreDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtension.swift; sourceTree = "<group>"; };
 		9EB34AC02528333A00C5A2B5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		9ED2C84A2508EB9600672495 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
-		9ED2C84B2508EB9600672495 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		9ED2C84D2508EB9600672495 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		9ED2C84E2508EB9600672495 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		9ED2C8542508EFDA00672495 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		9ED2C8552508EFDA00672495 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		9ED2C8562508EFDA00672495 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -133,15 +121,6 @@
 			path = ModifyToDone;
 			sourceTree = "<group>";
 		};
-		9E717248250B901600C0C444 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				9E71724B250B901600C0C444 /* Task.swift */,
-				9E159FEB250CAD400094D5EE /* DateModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		9E79F41225049F6C00A36AE0 /* AddToDone */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,10 +158,7 @@
 				9EB34AC52528353600C5A2B5 /* CoreData */,
 				9E9A5062251B6F6E00D70065 /* ToDoneList.entitlements */,
 				9E4469D2251726C7000E9A36 /* ModifyToDone */,
-				9E717248250B901600C0C444 /* Models */,
 				9ED2C8532508EFDA00672495 /* Extension */,
-				9ED2C8492508EB9600672495 /* SignIn */,
-				9ED2C84C2508EB9600672495 /* SignUp */,
 				9E79F41225049F6C00A36AE0 /* AddToDone */,
 				9E8DFDF125049EA000F255C2 /* MainTableView */,
 				9E8DFDC125049C2900F255C2 /* AppDelegate.swift */,
@@ -190,7 +166,6 @@
 				9E8DFDCA25049C2B00F255C2 /* Assets.xcassets */,
 				9E8DFDCC25049C2B00F255C2 /* LaunchScreen.storyboard */,
 				9EB34ABF2528333A00C5A2B5 /* Model.xcdatamodeld */,
-				9E79F4172504B65B00A36AE0 /* GoogleService-Info.plist */,
 				9E8DFDCF25049C2B00F255C2 /* Info.plist */,
 			);
 			path = ToDoneList;
@@ -226,26 +201,10 @@
 		9EB34AC52528353600C5A2B5 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				9E277D00252F394E00236D1D /* TodoneTask+CoreDataClass.swift */,
+				9E277CFB252F394800236D1D /* TodoneTask+CoreDataProperties.swift */,
 			);
 			path = CoreData;
-			sourceTree = "<group>";
-		};
-		9ED2C8492508EB9600672495 /* SignIn */ = {
-			isa = PBXGroup;
-			children = (
-				9ED2C84A2508EB9600672495 /* SignIn.storyboard */,
-				9ED2C84B2508EB9600672495 /* SignInViewController.swift */,
-			);
-			path = SignIn;
-			sourceTree = "<group>";
-		};
-		9ED2C84C2508EB9600672495 /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				9ED2C84D2508EB9600672495 /* SignUpViewController.swift */,
-				9ED2C84E2508EB9600672495 /* SignUp.storyboard */,
-			);
-			path = SignUp;
 			sourceTree = "<group>";
 		};
 		9ED2C8532508EFDA00672495 /* Extension */ = {
@@ -254,7 +213,6 @@
 				9ED2C8542508EFDA00672495 /* UIColorExtension.swift */,
 				9ED2C8552508EFDA00672495 /* UIViewControllerExtension.swift */,
 				9ED2C8562508EFDA00672495 /* UIViewExtension.swift */,
-				9EB34ABA252832D000C5A2B5 /* CoreDataExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -393,10 +351,7 @@
 			files = (
 				9E8DFDCE25049C2B00F255C2 /* LaunchScreen.storyboard in Resources */,
 				9E79F41425049F9200A36AE0 /* AddToDone.storyboard in Resources */,
-				9E79F4182504B65B00A36AE0 /* GoogleService-Info.plist in Resources */,
-				9ED2C8522508EB9600672495 /* SignUp.storyboard in Resources */,
 				9E8DFDCB25049C2B00F255C2 /* Assets.xcassets in Resources */,
-				9ED2C84F2508EB9600672495 /* SignIn.storyboard in Resources */,
 				9E8DFDC925049C2900F255C2 /* Main.storyboard in Resources */,
 				9E4469EC2517278D000E9A36 /* ModifyToDone.storyboard in Resources */,
 			);
@@ -526,19 +481,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ED2C8512508EB9600672495 /* SignUpViewController.swift in Sources */,
 				9ED2C8572508EFDA00672495 /* UIColorExtension.swift in Sources */,
 				9E8DFDC625049C2900F255C2 /* ViewController.swift in Sources */,
 				9EB34AC12528333A00C5A2B5 /* Model.xcdatamodeld in Sources */,
-				9EB34ABB252832D000C5A2B5 /* CoreDataExtension.swift in Sources */,
 				9E4469E725172778000E9A36 /* ModifyAddToDoneViewController.swift in Sources */,
 				9E79F41625049FA300A36AE0 /* AddToDoneViewController.swift in Sources */,
 				9ED2C8582508EFDA00672495 /* UIViewControllerExtension.swift in Sources */,
 				9E8DFDC225049C2900F255C2 /* AppDelegate.swift in Sources */,
-				9E71724E250B901600C0C444 /* Task.swift in Sources */,
+				9E277D01252F394E00236D1D /* TodoneTask+CoreDataClass.swift in Sources */,
 				9ED2C8592508EFDA00672495 /* UIViewExtension.swift in Sources */,
-				9E159FEC250CAD400094D5EE /* DateModel.swift in Sources */,
-				9ED2C8502508EB9600672495 /* SignInViewController.swift in Sources */,
+				9E277CFC252F394800236D1D /* TodoneTask+CoreDataProperties.swift in Sources */,
 				9E8DFDC425049C2900F255C2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

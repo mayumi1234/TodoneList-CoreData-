@@ -8,10 +8,6 @@
 
 import UIKit
 import GoogleMobileAds
-import FirebaseAuth
-import FirebaseStorage
-import Firebase
-import FirebaseFirestore
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
@@ -21,16 +17,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var bottomView: UIStackView!
     @IBOutlet weak var graphButton: UIButton!
     
-    var tasks = [Task]()
-    
-    typealias MySectionRow = (mySection: String, date: Date, myRow: Array<Task>)
+    typealias MySectionRow = (mySection: String, date: Date, myRow: Array<TodoneTask>)
     var mySectionRows = [MySectionRow]()
+    var tasks = [TodoneTask]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupLogin()
-        firestoreToTasks()
         tableviewSetup()
         
         bottomView.isHidden = true
@@ -39,6 +32,62 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        getData()
+        mainTableView.reloadData()
+    }
+    
+    // get data
+    func getData(){
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        do {
+            tasks = try context.fetch(TodoneTask.fetchRequest())
+            
+            mySectionRows.removeAll()
+            
+            // sectionに日付を追加
+            for i in 0..<tasks.count {
+//                すでに日付が入っているときは、該当のセクションにタスクを追加する
+                if let index = self.mySectionRows.firstIndex(where: { $0.mySection == tasks[i].dateString }) {
+                    self.mySectionRows[index].myRow.append(tasks[i])
+                } else {
+//                    新しい日付が入ってきたときに、新しいセクションを作成
+                    self.mySectionRows.insert((tasks[i].dateString!, tasks[i].date!, [tasks[i]]), at: 0)
+                }
+                sortArray()
+            }
+        }
+        catch{
+            print("読み込み失敗！")
+        }
+    }
+    
+    // delete
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath:IndexPath){
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        if editingStyle == .delete{
+            
+            let task = mySectionRows[indexPath.section].myRow[indexPath.row]
+            context.delete(task)
+            
+            if let mySectionRowIndex = self.mySectionRows.firstIndex(where: { $0.myRow.contains(where: { $0.documentId == task.documentId }) }) {
+                self.mySectionRows[mySectionRowIndex].myRow.removeAll(where: { $0.documentId == task.documentId })
+                if self.mySectionRows[mySectionRowIndex].myRow.count == 0 {
+                    self.mySectionRows.remove(at: mySectionRowIndex)
+                }
+            }
+            
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            do {
+                tasks = try context.fetch(TodoneTask.fetchRequest())
+            }
+            catch{
+                print("読み込み失敗！")
+            }
+        }
+        tableView.reloadData()
         
     }
     
@@ -60,71 +109,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         AdsSetup()
     }
     
-    private func firestoreToTasks() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        db.collection("users").document(uid).collection("tasks")
-            .addSnapshotListener { (snapshots, err) in
-                if let err = err {
-                    print("date情報の取得に失敗しました。\(err)")
-                    return
-                }
-                
-                snapshots?.documentChanges.forEach({ (documentChange) in
-                    switch documentChange.type {
-                    case .added:
-                        let dic = documentChange.document.data()
-                        let task = Task(dic: dic)
-                        self.tasks.append(task)
-                        if let index = self.mySectionRows.firstIndex(where: { $0.mySection == task.dateString }) {
-                            self.mySectionRows[index].myRow.append(task)
-                        } else {
-                            self.mySectionRows.insert((task.dateString, task.date, [task]), at: 0)
-                        }
-                        self.sortArray()
-                        self.mainTableView.reloadData()
-                        
-                    case .modified:
-                        let dic = documentChange.document.data()
-                        let task = Task(dic: dic)
-                        
-                        if let mySectionRowIndex = self.mySectionRows.firstIndex(where: { $0.myRow.contains(where: { $0.documentId == task.documentId }) }) {
-                            if let myRowIndex = self.mySectionRows[mySectionRowIndex].myRow.firstIndex(where: { $0.documentId == task.documentId }) {
-                                
-                                // 日付が変更されていない時
-                                if self.mySectionRows[mySectionRowIndex].myRow[myRowIndex].dateString == task.dateString {
-                                    self.mySectionRows[mySectionRowIndex].myRow[myRowIndex] = task
-                                } else { // 日付が変更された時
-//                                    今のセクションから要素を除去
-                                        self.mySectionRows[mySectionRowIndex].myRow.removeAll(where: { $0.documentId == task.documentId })
-                                        if self.mySectionRows[mySectionRowIndex].myRow.count == 0 {
-                                            self.mySectionRows.remove(at: mySectionRowIndex)
-                                        }
-//                                        指定のセクションに要素を追加する
-                                    if let index = self.mySectionRows.firstIndex(where: { $0.mySection == task.dateString }) {
-                                        self.mySectionRows[index].myRow.append(task)
-                                    } else {
-                                        self.mySectionRows.insert((task.dateString, task.date, [task]), at: 0)
-                                    }
-                                    
-                                }
-                            }
-                        }
-                        self.sortArray()
-                        self.mainTableView.reloadData()
-                        
-                    case .removed:
-                        print("test")
-                    }
-                })
-        }
-    }
-    
     private func sortArray() {
         self.mySectionRows.sort { (m1, m2) -> Bool in
             let m1Date = m1.date
             let m2Date = m2.date
-            return m1Date > m2Date
+            return m1.mySection > m2.mySection
         }
     }
     
@@ -132,19 +121,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let storyboard: UIStoryboard = UIStoryboard(name: "AddToDone", bundle: nil)//遷移先のStoryboardを設定
         let nextView = storyboard.instantiateViewController(withIdentifier: "AddToDoneViewController") as! AddToDoneViewController//遷移先のViewControllerを設定
         self.navigationController?.pushViewController(nextView, animated: true)//遷移する
-    }
-    
-    @IBAction func graphButton(_ sender: Any) {
-    }
-    
-    private func setupLogin() {
-        if Auth.auth().currentUser == nil { // ログインしてない時
-            let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
-            let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
-            let nav = UINavigationController(rootViewController: signUpViewController)
-            nav.modalPresentationStyle = .fullScreen
-            self.present(nav, animated: true, completion: nil)
-        }
     }
     
     private func AdsSetup() {
@@ -189,10 +165,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         //押された位置でcellのpathを取得
         let point = sender.location(in: mainTableView)
         let indexPath = mainTableView.indexPathForRow(at: point)
-        
+
         //アラート生成
         let actionSheet = UIAlertController(title: "Menu", message: "", preferredStyle: UIAlertController.Style.actionSheet)
-        
+
         let action1 = UIAlertAction(title: "編集", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) in
             let storyboard: UIStoryboard = UIStoryboard(name: "ModifyToDone", bundle: nil)//遷移先のStoryboardを設定
@@ -200,35 +176,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             nextView.task = self.mySectionRows[indexPath!.section].myRow[indexPath!.row]
             self.navigationController?.pushViewController(nextView, animated: true)//遷移する
         })
-        
+
         let action2 = UIAlertAction(title: "削除", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) in
-            
+
 //            選択されたセルを削除する
-            guard let uid = Auth.auth().currentUser?.uid else { return }
             let docId = self.mySectionRows[indexPath!.section].myRow[indexPath!.row].documentId
             let task = self.mySectionRows[indexPath!.section].myRow[indexPath!.row]
             
-            db.collection("users").document(uid).collection("tasks").document(docId).delete() { err in
-                if let err = err {
-                    print("Error removing document: \(err)")
-                } else {
-                    
-                    if let mySectionRowIndex = self.mySectionRows.firstIndex(where: { $0.myRow.contains(where: { $0.documentId == task.documentId }) }) {
-                        self.mySectionRows[mySectionRowIndex].myRow.removeAll(where: { $0.documentId == task.documentId })
-                        if self.mySectionRows[mySectionRowIndex].myRow.count == 0 {
-                            self.mySectionRows.remove(at: mySectionRowIndex)
-                        }
-                    }
-                    self.mainTableView.reloadData()
+            if let mySectionRowIndex = self.mySectionRows.firstIndex(where: { $0.myRow.contains(where: { $0.documentId == task.documentId }) }) {
+                self.mySectionRows[mySectionRowIndex].myRow.removeAll(where: { $0.documentId == task.documentId })
+                if self.mySectionRows[mySectionRowIndex].myRow.count == 0 {
+                    self.mySectionRows.remove(at: mySectionRowIndex)
                 }
             }
+            self.mainTableView.reloadData()
+            
         })
         let close = UIAlertAction(title: "閉じる", style: UIAlertAction.Style.destructive, handler: {
             (action: UIAlertAction!) in
             print("閉じる")
         })
-        
+
         //UIAlertControllerにタイトル1ボタンとタイトル2ボタンと閉じるボタンをActionを追加
         actionSheet.addAction(action1)
         actionSheet.addAction(action2)
@@ -241,21 +210,21 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
     }
-    
+
     // セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
         return mySectionRows.count
     }
-    
+
     // セクションの中の数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mySectionRows[section].myRow.count
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return mySectionRows[section].mySection
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = mainTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MainTableViewCell
         cell.task = mySectionRows[indexPath.section].myRow[indexPath.row]
@@ -269,7 +238,7 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLable: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     
-    var task: Task? {
+    var task: TodoneTask? {
         didSet {
             if let task = task {
                 titleLable.text = task.name

@@ -8,10 +8,6 @@
 
 import UIKit
 import GoogleMobileAds
-import Firebase
-import FirebaseAuth
-import FirebaseStorage
-import FirebaseFirestore
 import PKHUD
 
 class ModifyAddToDoneViewController: UIViewController {
@@ -23,7 +19,7 @@ class ModifyAddToDoneViewController: UIViewController {
     
     var datePicker: UIDatePicker = UIDatePicker()
     
-    var task: Task?
+    var task: TodoneTask?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +75,7 @@ class ModifyAddToDoneViewController: UIViewController {
             return
         } else {
             HUD.show(.progress)
-            createToFirestore()
+            modifyToModel()
         }
     }
     
@@ -89,7 +85,7 @@ class ModifyAddToDoneViewController: UIViewController {
             return
         } else {
             HUD.show(.progress)
-            createToFirestore()
+            modifyToModel()
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
@@ -98,7 +94,7 @@ class ModifyAddToDoneViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    private func createToFirestore() {
+    private func modifyToModel() {
         guard let name = nameTextField.text else {
             return
         }
@@ -108,35 +104,24 @@ class ModifyAddToDoneViewController: UIViewController {
         guard let dateString = dateTextField.text else {
             return
         }
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        guard let documentId = task?.documentId else {
-            return
-        }
         
         let date = datePicker.date
-        let docData = [
-            "name": name,
-            "detail": detail,
-            "dateString": dateString,
-            "date": date,
-            "documentId": documentId
-            ] as [String : Any]
-
-        // タスクを記録
-        db.collection("users").document(uid).collection("tasks").document(documentId).setData(docData) { (err) in
-            if let err = err {
-                print("Firestoreへの保存に失敗しました。\(err)")
-                HUD.hide()
-                HUD.flash(.labeledError(title: "失敗しました。", subtitle: "\(err)"), delay: HUDTime)
-                return
-            }
-            print("Firestoreへの保存が成功しました。")
-            HUD.hide()
-            HUD.flash(.labeledSuccess(title: "完了しました。", subtitle: ""), delay: HUDTime)
+        
+        // 受け取ったオブジェクト、または、先ほど新しく作成したオブジェクトそのタスクのnameとcategoryに入力データを代入する
+        if let task = task {
+            task.name = name
+            task.detail = detail
+            task.date = date
+            task.dateString = dateString
         }
+
+        // 変更内容を保存する
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        HUD.hide()
+        HUD.flash(.labeledSuccess(title: "完了しました。", subtitle: ""), delay: HUDTime)
     }
+    
     
     private func setupLayout() {
         continuedRecordButton.layer.cornerRadius = 5

@@ -11,41 +11,6 @@ import GoogleMobileAds
 import PKHUD
 import CoreData
 
-class CoreDataModel {
-    
-    private static var persistentContainer: NSPersistentCloudKitContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer as! NSPersistentCloudKitContainer
-    
-    static func newTask() -> TodoneTask {
-        let context = persistentContainer.viewContext
-        let todoneTask = NSEntityDescription.insertNewObject(forEntityName: "TodoneTask", into: context) as! TodoneTask
-        return todoneTask
-    }
-    
-    static func save() {
-        persistentContainer.saveContext()
-    }
-    
-    static func delete(todoneTask: TodoneTask) {
-        let context = persistentContainer.viewContext
-        context.delete(todoneTask)
-    }
-    
-    static func getTask() -> [TodoneTask] {
-        
-        let context = persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TodoneTask")
-        
-        do {
-            let todoneTask = try context.fetch(request) as! [TodoneTask]
-            return todoneTask
-        }
-        catch {
-            fatalError()
-        }
-    }
-    
-}
-
 class AddToDoneViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -103,8 +68,6 @@ class AddToDoneViewController: UIViewController {
         } else {
             HUD.show(.progress)
             createToCoreData()
-            let test = CoreDataModel.getTask()
-            print(test)
         }
     }
     
@@ -135,59 +98,23 @@ class AddToDoneViewController: UIViewController {
         }
         
         let date = datePicker.date
+        let documentId = AddToDoneViewController.randomString(length: 8)
         
-        // task作成
-        let task = CoreDataModel.newTask()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+        let task = TodoneTask(context: context)
         task.name = name
         task.date = date
         task.dateString = dateString
         task.detail = detail
+        task.documentId = documentId
 
-        // 保存
-        CoreDataModel.save()
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        navigationController!.popViewController(animated: true)
+        
         HUD.hide()
         HUD.flash(.labeledSuccess(title: "完了しました。", subtitle: ""), delay: HUDTime)
     }
-    
-//
-//    private func createToFirestore() {
-//        guard let name = nameTextField.text else {
-//            return
-//        }
-//        guard let detail = detailTextView.text else {
-//            return
-//        }
-//        guard let dateString = dateTextField.text else {
-//            return
-//        }
-//        guard let uid = Auth.auth().currentUser?.uid else {
-//            return
-//        }
-//
-//        let date = datePicker.date
-//        let documentID = UIViewController.randomString(length: 20)
-//
-//        let docData = [
-//            "name": name,
-//            "detail": detail,
-//            "dateString": dateString,
-//            "date": date,
-//            "documentId": documentID
-//            ] as [String : Any]
-//
-//        // タスクを記録
-//        db.collection("users").document(uid).collection("tasks").document(documentID).setData(docData) { (err) in
-//            if let err = err {
-//                print("Firestoreへの保存に失敗しました。\(err)")
-//                HUD.hide()
-//                HUD.flash(.labeledError(title: "失敗しました。", subtitle: "\(err)"), delay: HUDTime)
-//                return
-//            }
-//            print("Firestoreへの保存が成功しました。")
-//            HUD.hide()
-//            HUD.flash(.labeledSuccess(title: "完了しました。", subtitle: ""), delay: HUDTime)
-//        }
-//    }
     
     private func setupLayout() {
         continuedRecordButton.layer.cornerRadius = 5
