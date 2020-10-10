@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-1019" y="-332"/>
         </scene>
-        <!--追加-->
+        <!--Add Task-->
         <scene sceneID="ymr-lg-fNc">
             <objects>
                 <viewController storyboardIdentifier="AddToDoneViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9mn-1j-H7U" customClass="AddToDoneViewController" customModule="ToDoneList" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,7 +39,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jXz-yl-uu4">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="54.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="el0-IG-G1x">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="el0-IG-G1x">
                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -55,7 +55,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Fzr-uE-iYX">
                                         <rect key="frame" x="0.0" y="84.5" width="314" height="170.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="詳細" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAg-KE-dql">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAg-KE-dql">
                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -76,7 +76,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JtZ-zT-Jhu">
                                         <rect key="frame" x="0.0" y="285" width="314" height="54.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wya-WV-uFZ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wya-WV-uFZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -93,7 +93,7 @@
                                         <rect key="frame" x="0.0" y="369.5" width="314" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="記録（継続）">
+                                        <state key="normal" title="Add（Continue）">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -111,12 +111,12 @@
                             <constraint firstItem="1MT-d9-9Zx" firstAttribute="trailing" secondItem="lbr-Y0-429" secondAttribute="trailing" constant="50" id="fd8-RY-FlO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="追加" id="1Gd-Ke-Esr">
+                    <navigationItem key="navigationItem" title="Add Task" id="1Gd-Ke-Esr">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="ORW-xd-dYW">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="oeT-29-Nzb">
                                 <rect key="frame" x="20" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="キャンセル"/>
+                                <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="pushOnCanceledButton:" destination="9mn-1j-H7U" eventType="touchUpInside" id="abA-Ui-23h"/>
                                 </connections>
@@ -126,7 +126,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Pks-En-Pjh">
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="記録"/>
+                                <state key="normal" title="Add"/>
                                 <connections>
                                     <action selector="pushOnRecordButton:" destination="9mn-1j-H7U" eventType="touchUpInside" id="Nzs-C8-Wjm"/>
                                 </connections>
