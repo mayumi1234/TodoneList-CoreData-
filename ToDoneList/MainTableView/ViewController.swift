@@ -169,7 +169,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let indexPath = mainTableView.indexPathForRow(at: point)
 
         //アラート生成
-        let actionSheet = UIAlertController(title: "Menu", message: "", preferredStyle: UIAlertController.Style.actionSheet)
+        let actionSheet = UIAlertController(title: "メニュー", message: "", preferredStyle: UIAlertController.Style.actionSheet)
 
         let action1 = UIAlertAction(title: "編集", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) in
