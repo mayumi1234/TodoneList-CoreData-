@@ -128,7 +128,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ljJ-O8-Dea">
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add"/>
+                                <state key="normal" title="追加"/>
                                 <connections>
                                     <action selector="addToDoneButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5sR-QC-yrO"/>
                                 </connections>
